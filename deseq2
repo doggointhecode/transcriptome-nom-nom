@@ -1,3 +1,7 @@
+#Basic command line ugase for DESEq2
+#Refer to http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html for further 
+
+
 table=read.table("test.txt",header=TRUE)
 samplename=table$Sample_Name
 name=table$Sample_Path
@@ -9,3 +13,60 @@ ddsHTSeq = DESeqDataSetFromHTSeqCount(sampleTable = SampleTable, design = ~ cond
 keep = rowSums(counts(ddsHTSeq)) >= 10
 dds=ddsHTSeq[keep,]
 dds=DESeq(dds)
+
+raw_counts<- counts(dds, normalized=F)
+deseq2_norm_counts<- counts(dds, normalized=T)
+
+res_TestvsCtrl <- results(dds, contrast=c('condition', 'Test', 'Ctrl')))
+summary(res_TestvsCtrl)
+
+#check comparisons in store. This is often an incomplete list, especially for multi-level design and comparison
+resultsNames(dds)
+
+#estimate the shruken LFC
+resLFC_TestvsCtrl <- lfcShrink(dds, coef="condition_Test_vs_Ctrl", type="apeglm")
+
+#MA-plot
+plotMA(res)
+plotMA(res, ylim=c(-2,2))  
+plotMA(resLFC, ylim=c(-2,2))
+
+vsd<- vst(dds, blind=F)
+
+pca<- plotPCA(vsd, 'batch')
+#pca<- plotPCA(vsd, 'condition')
+nudge <- position_nudge(y = 1)
+pca + geom_text(aes(label = name), position = nudge)
+
+#If you have used batch modelling in deseq2, you need to use limma correction to see the effects of batch modelling take place on PCA
+
+#batch correcting for counts in limma 
+mat <- assay(vsd)
+mm <- model.matrix(~condition, colData(vsd))
+mat <- limma::removeBatchEffect(mat, batch=vsd$batch, design=mm)
+assay(vsd) <- mat
+corrected_counts<- assay(vsd)
+
+#Plot counts
+plotCounts(dds, gene='gene_id', intgroup="condition/batch")
+
+#QC Plots 
+meanSdPlot(assay(vsd))
+
+#Sample-Sample Heatmap
+sampleDists <- dist(t(assay(vsd)))
+
+library("RColorBrewer")
+sampleDistMatrix <- as.matrix(sampleDists)
+rownames(sampleDistMatrix) <- samplename
+colnames(sampleDistMatrix) <- NULL
+colors <- colorRampPalette( rev(brewer.pal(9, "Blues")) )(255)
+pheatmap(sampleDistMatrix,
+         clustering_distance_rows=sampleDists,
+         clustering_distance_cols=sampleDists,
+         col=colors)
+         
+#Dispersion Plot
+plotDispEsts(dds)
+
+
