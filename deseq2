@@ -1,0 +1,11 @@
+table=read.table("test.txt",header=TRUE)
+samplename=table$Sample_Name
+name=table$Sample_Path
+cond=table$Condition_1
+batch=table$Batch
+SampleTable=data.frame(sampleName=samplename,filename=name,condition=cond, batch=batch)
+ddsHTSeq = DESeqDataSetFromHTSeqCount(sampleTable = SampleTable, design = ~ condition)
+#ddsHTSeq = DESeqDataSetFromHTSeqCount(sampleTable = SampleTable, design = ~ batch+condition)
+keep = rowSums(counts(ddsHTSeq)) >= 10
+dds=ddsHTSeq[keep,]
+dds=DESeq(dds)
