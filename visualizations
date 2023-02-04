@@ -1,0 +1,7 @@
+d <- plotCounts(dds, gene="ENSG00000019549", intgroup="condition", returnData=TRUE)
+# Plotting the MOV10 normalized counts, using the samplenames (rownames of d as labels)
+ggplot(d, aes(x = condition, y = count, color = condition)) + 
++     geom_point(position=position_jitter(w = 0.1,h = 0)) +
++     theme_bw() +
++     ggtitle("SNAI1") +
++     theme(plot.title = element_text(hjust = 0.5))
