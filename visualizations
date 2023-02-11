@@ -5,3 +5,13 @@ ggplot(d, aes(x = condition, y = count, color = condition)) +
 +     theme_bw() +
 +     ggtitle("SNAI1") +
 +     theme(plot.title = element_text(hjust = 0.5))
+
+
+
+####Volcano Plots
+
+p <- ggplot(data=vol_rom, aes(x=log2FoldChange, y=-log10(padj), col=DiffExpr)) + geom_point(shape=16, size=1) + theme_minimal()
+p2 <- p + geom_vline(xintercept=c(-1, 1), col="blue") +
+geom_hline(yintercept=-log10(0.1), col="red")
+p3 <- p2 + scale_color_manual(values=c("cornflowerblue", "lightgrey", "brown1"))
+p3
