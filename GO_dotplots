@@ -1,0 +1,7 @@
+ggplot(data = rom_up, aes(x = generatio, y = reorder(name, generatio),
+color = p.adj, size = generatio)) +
+geom_point() +
+scale_color_gradient(low = "red", high = "blue") +
+theme_bw() +
+ylab("") +
+xlab("")+ theme(axis.text = element_text(face="bold"))
