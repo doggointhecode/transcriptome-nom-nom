@@ -16,6 +16,14 @@ geom_hline(yintercept=-log10(0.1), col="red")
 p3 <- p2 + scale_color_manual(values=c("cornflowerblue", "lightgrey", "brown1"))
 p3
 
+#Usable Template3
+
+tiff("volcano_b27vsfresh_actualID.tiff", units="in", width=5, height=5, res=400)
+p <- ggplot(data=vol_b27vfresh, aes(x=log2FoldChange, y=-log10(padj), col=DiffExpr)) + geom_point(shape=16, size=0.8) + theme_test()
+p3 <- p + scale_color_manual(values=c("dodgerblue2", "lightgrey", "brown2"))
+p3
+dev.off()
+
 
 #Volcano Plot Classic
 
