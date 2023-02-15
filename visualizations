@@ -15,3 +15,31 @@ p2 <- p + geom_vline(xintercept=c(-1, 1), col="blue") +
 geom_hline(yintercept=-log10(0.1), col="red")
 p3 <- p2 + scale_color_manual(values=c("cornflowerblue", "lightgrey", "brown1"))
 p3
+
+
+#Volcano Plot Classic
+
+
+padj.cutoff <- 0.05
+lfc.cutoff <- 1.0
+threshold <- data$padj < padj.cutoff & abs(data$log2FoldChange) > lfc.cutoff
+
+data<- data.frame(data)
+
+ggplot(data) + geom_point(aes(x= log2FoldChange, y= -log10(padj), color= threshold)) + ggtitle("VolcanoPlot") + xlab("log2FoldChange") + ylab("-log10pvalue") + ylim(0, 5) + theme(legend.position= "none", plot.title= element_text(size= rel(1.5), hjust= 0.5), axis.title= element_text(size= rel(1.25)))
+dev.off()
+
+#VOLCANO Plot with Colors
+
+
+data= read.csv("file.csv")
+tiff("test.tiff", units="in", width=5, height=5, res=660)
+with(data, plot(log2FoldChange, -log10(padj), pch=20, main=""))
+abline(h=1.3, col="blue", lty=2, lwd=2)
+abline(v=c(-1,1), col="blue", lty=2, lwd=2)
+with(subset(data, padj>05), points(log2FoldChange, -log10(pvalue), pch=20, col="grey"))
+with(subset(res, log2FoldChange<=-1 & pvalue<=0.05), points(log2FoldChange, -log10(pvalue), pch=20, col="red"))
+> with(subset(res, log2FoldChange>=1 & pvalue<=0.05), points(log2FoldChange, -log10(pvalue), pch=20, col="green"))
+> title(main= "Volcano Plot for Differential gene expression")
+> dev.off()
+
