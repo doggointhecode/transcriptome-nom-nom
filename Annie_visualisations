@@ -35,7 +35,7 @@ dev.off()
 
 #DOTPLOT for GO terms
 
-png('dotplot_b27vsfresh_upreg.png', units = 'in', width = 9, height = 7, res = 600)
+png('dotplot_infvshep_b27_upreg.png', units = 'in', width = 9, height = 7, res = 600)
 p<- dotplot(go_infvhep_up)
 p+ theme_classic(base_size = 22) +scale_colour_gradient()
 dev.off()
