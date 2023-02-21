@@ -1,0 +1,23 @@
+> table=read.table("SampleTable.as.actualid.comb.nf54co_zonality_figures.txt",header=TRUE)
+> samplename=table$Sample_Name
+> name=table$Sample_Path
+> cond=table$Condition_1
+> batch=table$Batch
+> Treatment=table$Treatment
+> Status=table$Status
+> SampleTable=data.frame(sampleName=samplename,filename=name,condition=cond, batch=batch, Status=Status, Treatment=Treatment)
+> ddsHTSeq = DESeqDataSetFromHTSeqCount(sampleTable = SampleTable, design = ~ condition)
+> keep = rowSums(counts(ddsHTSeq)) >= 10
+> dds=ddsHTSeq[keep,]
+> dds=DESeq(dds)
+
+> vsd<- vst(dds, blind=F)
+
+> jpeg('testpca.jpeg', height = 6, width = 12, units = 'in', res = 600)
+> pcaData <- plotPCA(vsd, intgroup=c("Treatment", "Status"), returnData=TRUE)
+> percentVar <- round(100 * attr(pcaData, "percentVar"))
+> ggplot(pcaData, aes(PC1, PC2, color=Treatment, shape=Status)) +     geom_point(size=5) + theme_classic()+
+     xlab(paste0("PC1: ",percentVar[1],"% variance")) +
+     ylab(paste0("PC2: ",percentVar[2],"% variance"))+ scale_color_manual(values = c("Fresh"="brown1", "Mock" = "cornflowerblue", "IWP2"="darkorchid2", "SB"="forestgreen", "5C"="goldenrod3"))
+> dev.off()
+
