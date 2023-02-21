@@ -21,3 +21,14 @@
      ylab(paste0("PC2: ",percentVar[2],"% variance"))+ scale_color_manual(values = c("Fresh"="brown1", "Mock" = "cornflowerblue", "IWP2"="darkorchid2", "SB"="forestgreen", "5C"="goldenrod3"))
 > dev.off()
 
+#VOLCANO PLOT WITH LABELS
+
+#edited the csv file. Added gene symbol column with script. Sorted first downreg genes by 'stat' column. And then same for upreg genes. Made a final column that says DeLabel. Put 15 genes up and 15 genes down.
+
+jpeg('test.vol.jpeg', res = 600, units = 'in', width = 11, height = 8)
+p <- ggplot(data=vol_b27vsfresh, aes(x=log2FoldChange, y=-log10(padj), col=DiffExpr, label=DeLabel)) + geom_point(shape=16, size=2) + theme_classic(base_size = 22)+ geom_text_repel()+ ylim(0, 115)
+# p <- ggplot(data=vol_b27vsfresh, aes(x=log2FoldChange, y=-log10(padj), col=DiffExpr, label=DeLabel)) + geom_point(shape=16, size=2) + theme_classic(base_size = 22)+ geom_text_repel()+ scale_y_break(c(115, 225))
+#this option introduces kink but messes up labels (double labels of genes), so I reduced the ylim to exclude the single gene at very high -log10(padj). 
+p2 <- p + scale_color_manual(values=c("cornflowerblue", "lightgrey", "brown1"))
+p2
+dev.off()
