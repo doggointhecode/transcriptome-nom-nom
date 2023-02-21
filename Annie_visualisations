@@ -32,3 +32,10 @@ p <- ggplot(data=vol_b27vsfresh, aes(x=log2FoldChange, y=-log10(padj), col=DiffE
 p2 <- p + scale_color_manual(values=c("cornflowerblue", "lightgrey", "brown1"))
 p2
 dev.off()
+
+#DOTPLOT for GO terms
+
+png('dotplot_b27vsfresh_upreg.png', units = 'in', width = 9, height = 7, res = 600)
+p<- dotplot(go_infvhep_up)
+p+ theme_classic(base_size = 22) +scale_colour_gradient()
+dev.off()
