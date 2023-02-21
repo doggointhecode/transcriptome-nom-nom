@@ -51,3 +51,9 @@ with(subset(data, log2FoldChange>=1 & pvalue<=0.1), points(log2FoldChange, -log1
 title(main= "Volcano Plot for Differential gene expression")
 dev.off()
 
+#DOTPLOTS FOR GO TERMS
+
+p<- dotplot(go_infvhep_up)
+png('dotplot_b27vsfresh_upreg.png', units = 'in', width = 9, height = 7, res = 600)
+p+ theme_classic(base_size = 22)
+dev.off()
