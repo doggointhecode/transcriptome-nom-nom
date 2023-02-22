@@ -39,3 +39,17 @@ png('dotplot_infvshep_b27_upreg.png', units = 'in', width = 9, height = 7, res =
 p<- dotplot(go_infvhep_up)
 p+ theme_classic(base_size = 22) +scale_colour_gradient()
 dev.off()
+
+
+VENN DIAGRAM IN GGVENN
+
+c5c.up<- read.table('venn.5c.up.txt')
+c5c.down<- read.table('venn.5c.down.txt')
+c5c.up.venn<- unlist(c5c.up)
+c5c.down.venn<- unlist(c5c.down)
+x<- list(A=iwp.up.venn, B=sb.up.venn, C=c5c.up.venn)
+names(x) <- c("Upregulated in IWP2","Upregulated in SB", "Upregulated in 5C")
+ggvenn(x, fill_color = c("aquamarine2", "darkorchid1", "deeppink"), stroke_size = 1, set_name_size = 8, text_size = 8)
+png('venn_iwpvssb_downreg.png', res = 600, height = 12, width = 12, units = 'in')
+ggvenn(x, fill_color = c("aquamarine2", "darkorchid1", "deeppink"), stroke_size = 1, set_name_size = 8, text_size = 8)
+dev.off()
