@@ -1,0 +1,15 @@
+library(factoextra)
+library(NbClust)
+upreg<- read.table('morpheus.upreg.txt', header = T)
+down<- read.table('morpheus.downreg.txt', header = T)
+
+#Gap Stat Method with recommended 500 iterations
+set.seed(123)
+fviz_nbclust(upreg, kmeans, nstart = 25,  method = "gap_stat", nboot = 500)+labs(subtitle = "Gap statistic method")
+
+#Elbow method
+fviz_nbclust(upreg, kmeans, method = "wss") +geom_vline(xintercept = 4, linetype = 2)+ labs(subtitle = "Elbow method")
+
+#Silhouette Method
+fviz_nbclust(upreg, kmeans, method = "silhouette")+labs(subtitle = "Silhouette method")
+
