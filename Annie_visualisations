@@ -53,3 +53,13 @@ ggvenn(x, fill_color = c("aquamarine2", "darkorchid1", "deeppink"), stroke_size 
 png('venn_iwp.sb.5c_upreg.png', res = 600, height = 12, width = 12, units = 'in')
 ggvenn(x, fill_color = c("aquamarine2", "darkorchid1", "deeppink"), stroke_size = 1, set_name_size = 8, text_size = 8)
 dev.off()
+
+x<- list(A=venn.iwp.up, B=venn.sb.up)
+names(x) <- c("Upregulated in IWP2", "Upregulated in SB")
+png('venn_iwp.sb.upreg.png', res = 600, height = 12, width = 12, units = 'in')
+ggVennDiagram(x, set_size = 12, label_size = 8)+ ggplot2::scale_fill_gradient(low="aquamarine2",high = "white")
+dev.off()
+
+png('venn_iwp.sb.upreg_2.png', res = 600, height = 12, width = 12, units = 'in')
+ggVennDiagram(x, set_size = 12, label_size = 8)+ ggplot2::scale_fill_gradient(low="white",high = "darkorchid1")
+dev.off()
