@@ -78,3 +78,11 @@ dev.off()
 > ggVennDiagram(x, set_size = 11, label_size = 8)+  scale_fill_gradientn(colors=c(whites(10), brown(180), whites2(837)))
 > png('venn_iwp.sb.down.intersect.png', res = 600, height = 12, width = 12, units = 'in')
 > ggVennDiagram(x, set_size = 11, label_size = 8)+  scale_fill_gradientn(colors=c(white(10), brown(180), whites2(837)))
+
+
+> white=colorRampPalette(c("white", "white"))
+> dp=colorRampPalette(c("deeppink", "deeppink"))
+
+> png('venn_iwp.sb.5c.upreg.5c.png', res = 600, height = 12, width = 12, units = 'in')
+> ggVennDiagram(x, set_size = 1, label_size = 8)+  scale_fill_gradientn(colors=c(white(705),dp(124), white(40)))
+> dev.off()
