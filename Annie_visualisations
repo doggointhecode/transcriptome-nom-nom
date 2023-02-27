@@ -33,6 +33,8 @@ p2 <- p + scale_color_manual(values=c("cornflowerblue", "lightgrey", "brown1"))
 p2
 dev.off()
 
+
+
 #DOTPLOT for GO terms
 
 png('dotplot_infvshep_b27_upreg.png', units = 'in', width = 9, height = 7, res = 600)
@@ -63,3 +65,16 @@ dev.off()
 png('venn_iwp.sb.upreg_2.png', res = 600, height = 12, width = 12, units = 'in')
 ggVennDiagram(x, set_size = 12, label_size = 8)+ ggplot2::scale_fill_gradient(low="white",high = "darkorchid1")
 dev.off()
+
+
+
+> aqua=colorRampPalette(c("aquamarine2", "aquamarine2"))
+> white=colorRampPalette(c("white", "white"))
+
+> png('venn_iwp.sb.down.iwp2spec.png', res = 600, height = 12, width = 12, units = 'in')
+> ggVennDiagram(x, set_size = 11, label_size = 8)+  scale_fill_gradientn(colors=c(aqua(8), white(178), white(837)))
+
+> brown=colorRampPalette(c("brown3", "brown3"))
+> ggVennDiagram(x, set_size = 11, label_size = 8)+  scale_fill_gradientn(colors=c(whites(10), brown(180), whites2(837)))
+> png('venn_iwp.sb.down.intersect.png', res = 600, height = 12, width = 12, units = 'in')
+> ggVennDiagram(x, set_size = 11, label_size = 8)+  scale_fill_gradientn(colors=c(white(10), brown(180), whites2(837)))
