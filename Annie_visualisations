@@ -86,3 +86,14 @@ dev.off()
 > png('venn_iwp.sb.5c.upreg.5c.png', res = 600, height = 12, width = 12, units = 'in')
 > ggVennDiagram(x, set_size = 1, label_size = 8)+  scale_fill_gradientn(colors=c(white(705),dp(124), white(40)))
 > dev.off()
+
+
+
+
+#GGViolin
+
+
+> png('tgfb.custom.treatment.png', res = 600, units = 'in', height = 20, width = 12)
+> ggviolin(tgf.treat, 'Sample', 'Expr', fill = 'Sample', palette = c('#06D6A0', 'darkorchid2', '#EB7BC0'), add = "boxplot", add.params = list(fill = "white"), xlab='', ylab='log2(FoldChange)')+ theme_classic(base_size = 44)
+> dev.off()
+
