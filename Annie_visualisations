@@ -92,8 +92,14 @@ dev.off()
 
 #GGViolin
 
-
+Treatment
 > png('tgfb.custom.treatment.png', res = 600, units = 'in', height = 20, width = 12)
 > ggviolin(tgf.treat, 'Sample', 'Expr', fill = 'Sample', palette = c('#06D6A0', 'darkorchid2', '#EB7BC0'), add = "boxplot", add.params = list(fill = "white"), xlab='', ylab='log2(FoldChange)')+ theme_classic(base_size = 44)
 > dev.off()
+
+Invitro
+png('tgfb.custom.invitro.png', res = 600, units = 'in', height = 20, width = 10)
+> ggviolin(tgf.invitro, 'Sample', 'Expr', fill = 'Sample', color = '#FF6B35', add = "boxplot", add.params = list(fill = "white"), xlab='', ylab='log2(FoldChange)')+ theme_classic(base_size = 44)
+> dev.off()
+RStudioGD 
 
