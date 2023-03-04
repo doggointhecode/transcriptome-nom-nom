@@ -103,3 +103,16 @@ png('tgfb.custom.invitro.png', res = 600, units = 'in', height = 20, width = 10)
 > dev.off()
 RStudioGD 
 
+
+##Custom DOTPLOT from go_enrich output
+
+png('pathways.invitroupreg.dotplot.png', res = 600, units = 'in', height = 8, width = 9)
+ggplot(data, aes(generatio, y = reorder(pathway, generatio),
++                           color = p.adjust, size = count)) +
++     geom_point() +
++     scale_color_gradient() +
++     theme_classic(base_size = 22) +
++     ylab("") +
++     xlab("Gene Ratio")
+dev.off()
+
