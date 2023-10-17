@@ -8,8 +8,8 @@ replicate=table$Replicate
 SampleTable=data.frame(sampleName=samplename,filename=name,condition=cond, timepoint=timepoint, metadata=metadata, replicate=replicate)
 dds = DESeqDataSetFromHTSeqCount(sampleTable = SampleTable, design = ~ metadata)
 dds=DESeq(dds)
-keep <- rowSums(counts(dds, normalize=T) >= 10) >= 3
-dds <- dds[keep,]
+#keep <- rowSums(counts(dds, normalize=T) >= 10) >= 3
+#dds <- dds[keep,]
 asex_raw_counts<- counts(dds)
 asex_norm_counts<- counts(dds, normalize=T)
 vsd <- vst(dds, blind=FALSE)
