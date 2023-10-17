@@ -1,4 +1,4 @@
-table=read.table("matthias_sample_sheet_asexual_covar.txt",header=TRUE)
+table=read.table("matthias_sample_sheet_asexual.txt",header=TRUE)
 samplename=table$SampleID
 name=table$SamplePath
 cond=table$Condition
