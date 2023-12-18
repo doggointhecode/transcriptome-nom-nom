@@ -22,3 +22,20 @@ scale_color_gradient(low = "red", high = "blue") +
 theme_bw() +
 ylab("") +
 xlab("")+ theme(axis.text = element_text(face="bold"))
+
+
+> jpeg('dot.romup.jpeg', res = 1200, units = 'in', width = 12, height = 6)
+> ggplot(data = rom_up, aes(x = generatio, y = reorder(name, generatio),
++                           color = p.adjusted, size = generatio)) +
++     geom_point() +    theme_classic(base_size = 28) +
++     ylab("") +
++     xlab("")
+> dev.off()
+
+> jpeg('dot.romdw.jpeg', res = 1200, units = 'in', width = 12, height = 6)
+> ggplot(data = rom_dw, aes(x = generatio, y = reorder(name, generatio),
++                           color = p.adjusted, size = generatio)) +
++     geom_point() +    theme_classic(base_size = 28) +
++     ylab("") +
++     xlab("")
+> dev.off()
