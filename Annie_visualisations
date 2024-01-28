@@ -124,9 +124,30 @@ dev.off()
 > ggVennDiagram(x, set_size = 1, label_size = 8)+  scale_fill_gradientn(colors=c(white(705),dp(124), white(40)))
 > dev.off()
 
+--------------------
+> x<- list(A=iwp.up.venn, B=sb.up.venn)
+> jpeg('venn_iwpvsb.iwpup_jan24.jpeg', res = 1200, height = 12, width = 12, units = 'in')
+> ggVennDiagram(x, set_size = 12)+ ggplot2::scale_fill_gradient(low="#FF5800",high = "white")
+> dev.off()
 
+> orange=colorRampPalette(c("#FF5800", "#FF5800"))
+> white=colorRampPalette(c("white", "white"))
+> jpeg('venn_iwp.sb.down.iwp2spec.jpeg', res = 1200, height = 12, width = 12, units = 'in')
+> ggVennDiagram(x, set_size = 12)+  scale_fill_gradientn(colors=c(orange(8), white(178), white(837)))
+> dev.off()
 
+> x<- list(A=iwp.up.venn, B=sb.up.venn)
+> green=colorRampPalette(c("#008000", "#008000"))
+> jpeg('venn_iwp.sb.up.sbspec.jpeg', res = 1200, height = 12, width = 12, units = 'in')
+> ggVennDiagram(x, set_size = 12)+  scale_fill_gradientn(colors=c(white(8), white(178), green(837)))
+> dev.off()
 
+> x<- list(A=iwp.dw.venn, B=sb.dw.venn)
+> jpeg('venn_iwp.sb.dw.sbspec.jpeg', res = 1200, height = 12, width = 12, units = 'in')
+> ggVennDiagram(x, set_size = 12)+  scale_fill_gradientn(colors=c(white(8), white(178), green(837)))
+> dev.off()
+
+-----------------------------------------
 #GGViolin
 
 Treatment
