@@ -147,6 +147,11 @@ dev.off()
 > ggVennDiagram(x, set_size = 12)+  scale_fill_gradientn(colors=c(white(8), white(178), green(837)))
 > dev.off()
 
+> mid=colorRampPalette(c("#806C00", "#806C00"))  #Created from grad pallet using "#FF5800 and #008000 as reference in coolors tool and choosing the midpoint of the spectrum 
+> jpeg('venn_iwp.sb.down.intersect.jpeg', res = 1200, height = 12, width = 12, units = 'in')
+> ggVennDiagram(x, set_size = 12)+  scale_fill_gradientn(colors=c(white(10), mid(180), white(837)))
+> dev.off()
+
 -----------------------------------------
 #GGViolin
 
