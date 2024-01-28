@@ -49,7 +49,10 @@ p<- dotplot(go_enrich_b27uninfvsfresh_up)
 p+ theme_classic(base_size = 30)+ theme(axis.text.y = element_text(face="bold", size = 22)) +scale_colour_gradient(low = '#ED1B24', high='#FFC0CB') (Gradients selected from coolors gradient tool)
 dev.off()
 
-
+jpeg('dotplot_infvshep_b27_down.jpeg', units = 'in', width = 13, height = 9, res = 1200)
+p<- dotplot(go_enrich_b27uninfvsfresh_down)
+p+ theme_classic(base_size = 30)+ theme(axis.text.y = element_text(face="bold", size = 22)) +scale_colour_gradient(low = '#003262', high='#6CB4EE')
+dev.off()
 
 
 png('dotplot_infvshep_b27_upreg.png', units = 'in', width = 9, height = 7, res = 600)
