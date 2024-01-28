@@ -54,6 +54,10 @@ p<- dotplot(go_enrich_b27uninfvsfresh_down)
 p+ theme_classic(base_size = 30)+ theme(axis.text.y = element_text(face="bold", size = 22)) +scale_colour_gradient(low = '#003262', high='#6CB4EE')
 dev.off()
 
+jpeg('pathways.invitroupreg.dotplot.jpeg', res = 1200, units = 'in', height = 9, width = 15)
+p<- ggplot(pathways, aes(GeneRatio, y = reorder(Pathway, GeneRatio), color = p.adjust, size = Count))+ geom_point()
+p+ theme_classic(base_size = 30) +ylab("")+ scale_color_gradient(low = '#ED1B24', high='#FFC0CB')+ theme(axis.text.y = element_text(face="bold", size = 22))
+dev.off()
 
 png('dotplot_infvshep_b27_upreg.png', units = 'in', width = 9, height = 7, res = 600)
 p<- dotplot(go_infvhep_up)
