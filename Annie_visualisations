@@ -21,13 +21,13 @@
      ylab(paste0("PC2: ",percentVar[2],"% variance"))+ scale_color_manual(values = c("Fresh"="brown1", "Mock" = "cornflowerblue", "IWP2"="darkorchid2", "SB"="forestgreen", "5C"="goldenrod3"))
 > dev.off()
 
-> jpeg('pca_jan24.jpeg', height = 6, width = 12, units = 'in', res = 1200)
-> pcaData <- plotPCA(vsd, intgroup=c("Treatment"), returnData=TRUE)
-> percentVar <- round(100 * attr(pcaData, "percentVar"))
-> ggplot(pcaData, aes(PC1, PC2, color=Treatment)) +     geom_point(size=5) + theme_classic(base_size=22)+
-+     xlab(paste0("PC1: ",percentVar[1],"% variance")) +
-+     ylab(paste0("PC2: ",percentVar[2],"% variance"))+ scale_color_manual(values = c("Fresh"="#79443B", "Mock" = "#808080", "IWP2"="#FF5800", "SB"="#008000", "5C"="#0F52BA"))
-> dev.off()
+jpeg('pca_feb24_okdot.jpeg', height = 6, width = 12, units = 'in', res = 600)
+pcaData <- plotPCA(vsd, intgroup=c("Treatment"), returnData=TRUE)
+percentVar <- round(100 * attr(pcaData, "percentVar"))
+ggplot(pcaData, aes(PC1, PC2, color=Treatment)) +     geom_point(size=5) + theme_classic(base_size=22)+
+    xlab(paste0("PC1: ",percentVar[1],"% variance")) +
+    ylab(paste0("PC2: ",percentVar[2],"% variance"))+ scale_color_manual(values = c("Fresh"="#A52A2A", "Mock" = "#848482", "IWP2"="#FF8C00", "SB"="#228B22", "5C"="#0070BB"))
+dev.off()
 
 > jpeg('pca_v2_jan24.jpeg', height = 6, width = 12, units = 'in', res = 1200)
 > pcaData <- plotPCA(vsd, intgroup=c("Treatment", "Status"), returnData=TRUE)
@@ -36,6 +36,7 @@
 +     xlab(paste0("PC1: ",percentVar[1],"% variance")) +
 +     ylab(paste0("PC2: ",percentVar[2],"% variance"))+ scale_color_manual(values = c("Fresh"="#79443B", "Mock" = "#808080", "IWP2"="#FF5800", "SB"="#008000", "5C"="#0F52BA"))
 > dev.off()
+
 #VOLCANO PLOT WITH LABELS
 
 #edited the csv file. Added gene symbol column with script. Sorted first downreg genes by 'stat' column. And then same for upreg genes. Made a final column that says DeLabel. Put 15 genes up and 15 genes down.
